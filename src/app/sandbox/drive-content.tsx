@@ -3,11 +3,10 @@
 import { ChevronRight, Upload } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "~/components/ui/button";
-import { mockFiles, mockFolders } from "../lib/mock-data";
-import { FileRow, FolderRow } from "./file-row";
+import { FileRow, FolderRow } from "~/app/file-row";
 import type {files_table as files, folders_table as folders} from "~/server/db/schema";
 
-export default function GoogleDriveClone(props:{
+export default function DriveContents(props:{
   files:(typeof files.$inferselect)[]
   folders:(typeof folders.$inferselect)[];
 }) {
