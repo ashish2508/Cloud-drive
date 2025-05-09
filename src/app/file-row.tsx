@@ -1,7 +1,11 @@
 import { FileIcon, Folder as FolderIcon } from "lucide-react";
-import type { File, Folder } from "../lib/mock-data";
+import type {
+  files_table as files,
+  folders_table as folders,
+} from "~/server/db/schema";
+
 export function FileRow(props: {
-  file: File;
+  file: typeof files.$inferselect;
   handleFileClick: (id: string) => void;
 }) {
   const { file, handleFileClick } = props;
@@ -29,23 +33,25 @@ export function FileRow(props: {
 }
 
 export function FolderRow(props: {
-  folder: Folder;
-  handleFolderClick: () => void;
+  // Changed 'folder' type to be a single object
+  folder: typeof folders.$inferselect;
+  handleFolderClick: (id: number | string) => void; // It's likely you'll need the folder's ID
 }) {
   const { folder, handleFolderClick } = props;
   return (
     <li
-      key={folder.id}
+      key={folder.id} // This will now work
       className="hover:bg-gray-750 border-b border-gray-700 px-6 py-4"
     >
       <div className="grid grid-cols-12 items-center gap-4">
         <div className="col-span-6 flex items-center">
+          {/* Pass the folder ID to handleFolderClick */}
           <button
-            onClick={() => handleFolderClick()}
+            onClick={() => handleFolderClick(folder.id)}
             className="flex items-center text-gray-100 hover:text-blue-400"
           >
             <FolderIcon className="mr-3" size={20} />
-            {folder.name}
+            {folder.name} {/* This will now work */}
           </button>
         </div>
         <div className="col-span-3 text-gray-400"></div>
