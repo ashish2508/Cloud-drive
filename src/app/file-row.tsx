@@ -3,6 +3,7 @@ import type {
   files_table as files,
   folders_table as folders,
 } from "~/server/db/schema";
+import Link from "next/link";
 
 export function FileRow(props: {
   file: typeof files.$inferSelect;
@@ -32,11 +33,9 @@ export function FileRow(props: {
 }
 
 export function FolderRow(props: {
-  // Changed 'folder' type to be a single object
   folder: typeof folders.$inferSelect;
-  handleFolderClick: (id: number | string) => void; // It's likely you'll need the folder's ID
 }) {
-  const { folder, handleFolderClick } = props;
+  const { folder } = props;
   return (
     <li
       key={folder.id} // This will now work
@@ -44,14 +43,15 @@ export function FolderRow(props: {
     >
       <div className="grid grid-cols-12 items-center gap-4">
         <div className="col-span-6 flex items-center">
-          {/* Pass the folder ID to handleFolderClick */}
-          <button
-            onClick={() => handleFolderClick(folder.id)}
+
+          <Link
+            href={`/f/${folder.id}`}
             className="flex items-center text-gray-100 hover:text-blue-400"
           >
             <FolderIcon className="mr-3" size={20} />
-            {folder.name} {/* This will now work */}
-          </button>
+            {folder.name}
+          </Link>
+
         </div>
         <div className="col-span-3 text-gray-400"></div>
         <div className="col-span-3 text-gray-400"></div>

@@ -12,7 +12,6 @@ export default function SandboxPage() {
     <form action={async ()=>{
       "use server";
 
-      console.log("Seeding data");
       await db.insert(folders).values(mockFolders.map((folder,index) => ({
         id: index+1,
         name: folder.name,
