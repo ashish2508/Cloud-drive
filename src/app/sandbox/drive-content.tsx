@@ -11,7 +11,7 @@ export default function DriveContents(props:{
   folders:(typeof folders.$inferSelect)[];
 }) {
   const [currentFolder, setCurrentFolder] = useState<number>(1);
-
+  
   const handleFolderClick = (folderId: number) => {
     setCurrentFolder(folderId);
   };
@@ -89,7 +89,7 @@ export default function DriveContents(props:{
               />
             ))}
             {props.files.map((file) => (
-              <FileRow key={file.id} file={file} handleFileClick={() => {}} />
+              <FileRow key={file.id} file={file} />
             ))}
           </ul>
         </div>

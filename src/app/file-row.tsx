@@ -5,10 +5,9 @@ import type {
 } from "~/server/db/schema";
 
 export function FileRow(props: {
-  file: typeof files.$inferselect;
-  handleFileClick: (id: string) => void;
+  file: typeof files.$inferSelect;
 }) {
-  const { file, handleFileClick } = props;
+  const { file } = props;
   return (
     <li
       key={file.id}
@@ -34,7 +33,7 @@ export function FileRow(props: {
 
 export function FolderRow(props: {
   // Changed 'folder' type to be a single object
-  folder: typeof folders.$inferselect;
+  folder: typeof folders.$inferSelect;
   handleFolderClick: (id: number | string) => void; // It's likely you'll need the folder's ID
 }) {
   const { folder, handleFolderClick } = props;
