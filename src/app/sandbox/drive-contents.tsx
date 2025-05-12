@@ -1,5 +1,3 @@
-"use client";
-
 import { ChevronRight, Upload } from "lucide-react";
 import { FileRow, FolderRow } from "~/app/file-row";
 import { Button } from "~/components/ui/button";
