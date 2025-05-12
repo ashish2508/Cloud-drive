@@ -11,13 +11,13 @@ export default function DriveContents(props:{
   folders:(typeof folders.$inferSelect)[];
 }) {
   const [currentFolder, setCurrentFolder] = useState<number>(1);
-  
+
   const handleFolderClick = (folderId: number) => {
     setCurrentFolder(folderId);
   };
 
   const breadcrumbs = useMemo(() => {
-    const breadcrumbs = [];
+    const breadcrumbs = [];     
     let currentId = currentFolder;
 
     while (currentId !== 1) {

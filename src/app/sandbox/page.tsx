@@ -1,5 +1,5 @@
-import {db} from "~/server/db"
-import { mockFolders,mockFiles } from "~/lib/mock-data";
+import { mockFiles, mockFolders } from "~/lib/mock-data";
+import { db } from "~/server/db";
 import {
   files_table as files,
   folders_table as folders,
