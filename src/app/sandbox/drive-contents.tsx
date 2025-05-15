@@ -12,15 +12,15 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { FileRow, FolderRow } from "~/app/file-row";
 import type {
-  files_table as files,
-  folders_table as folders,
+  files_table,
+  folders_table,
 } from "~/server/db/schema";
 import { useRouter } from "next/navigation";
 
 export default function DriveContents(props: {
-  files: (typeof files.$inferSelect)[];
-  folders: (typeof folders.$inferSelect)[];
-  parents: (typeof folders.$inferSelect)[];
+  files: (typeof files_table.$inferSelect)[];
+  folders: (typeof folders_table.$inferSelect)[];
+  parents: (typeof folders_table.$inferSelect)[];
 }) {
 const navigate = useRouter();
 

@@ -1,27 +1,51 @@
+import { auth } from "@clerk/nextjs/server";
+import { eq } from "drizzle-orm";
 import { mockFiles, mockFolders } from "~/lib/mock-data";
 import { db } from "~/server/db";
-import {
-  files_table as files,
-  folders_table as folders,
-} from "~/server/db/schema";
+import { files_table, folders_table } from "~/server/db/schema";
 
-export default function SandboxPage() {
+export default async function Sandbox() {
+  const user = await auth();
+  if (!user.userId) {
+    throw new Error("User not found");
+  }
+
+  const folders = await db
+    .select()
+    .from(folders_table)
+    .where(eq(folders_table.ownerId, user.userId));
+
+  console.log(folders);
+
   return (
-    <div className="flex flex-col gap-4">
-      Seed Function{" "}
-    <form action={async ()=>{
-      "use server";
+    <div>
+      <form
+        action={async () => {
+          "use server";
+          const user = await auth();
+          if (!user.userId) {
+            throw new Error("User not found");
+          }
 
-      await db.insert(folders).values(mockFolders.map((folder,index) => ({
-        id: index+1,
-        name: folder.name,
-        parent : index != 0?1 : null,
-      })),
-      );
-      await db.insert(files).values(mockFiles);
-     }} >
-      <button type="submit">Seed</button>
-    </form>
+          const rootFolder = await db
+            .insert(folders_table)
+            .values({
+              name: "root",
+              ownerId: user.userId,
+              parent: null,
+            })
+            .$returningId();
+
+          const insertableFolders = mockFolders.map((folder) => ({
+            name: folder.name,
+            ownerId: user.userId,
+            parent: rootFolder[0]!.id,
+          }));
+          await db.insert(folders_table).values(insertableFolders);
+        }}
+      >
+        <button type="submit">Create file</button>
+      </form>
     </div>
   );
 }
