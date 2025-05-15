@@ -19,7 +19,7 @@ async function getAllParents(folderId: number) {
       throw new Error("Parent folder not found");
     }
 
-    parents.push(folder);
+    parents.unshift(folder[0]);
     currentId = folder[0]?.parent;
   }
   return parents;
@@ -44,8 +44,13 @@ export default async function GoogleDriveClone(props: {
     .from(foldersSchema)
     .where(eq(foldersSchema.parent, parsedFolderId));
   const parentsPromise = getAllParents(parsedFolderId);
-  const [folders, files] = await Promise.all([foldersPromise, filesPromise]);
+  const [folders, files, parents] = await Promise.all([
+    foldersPromise,
+    filesPromise,
+    parentsPromise,
+  ]);
 
-  return <DriveContents files={files} folders={folders} />;
+  return (
+    <DriveContents files={files} folders={folders} parents={parents} />
+  );
 }
-
