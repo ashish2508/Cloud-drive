@@ -21,13 +21,14 @@ export const mockFolders: Folder[] = [
   { id: "3", name: "Work", type: "folder", parent: "root" },
   { id: "4", name: "Presentations", type: "folder", parent: "3" },
 ];
+
 export const mockFiles: File[] = [
   {
     id: "4",
     name: "Resume.pdf",
     type: "file",
     url: "/files/resume.pdf",
-    parent: "1",
+    parent: "root",
     size: "1.2 MB",
   },
   {
