@@ -1,4 +1,4 @@
-[Website-link](https://cldrive.netlify.app/)
+<a href="https://cldrive.netlify.app/" target="_blank" rel="noopener noreferrer">Website-link</a>
 
 ## TODO
 
@@ -6,3 +6,4 @@
 - [x] Move folder open state to URL
 - [x] Add Auth
 - [x] Add file uploading
+
