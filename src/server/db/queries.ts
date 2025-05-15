@@ -1,12 +1,11 @@
 import "server-only";
 
+import { and, eq, isNull } from "drizzle-orm";
 import { db } from "~/server/db";
 import {
   files_table as filesSchema,
   folders_table as foldersSchema,
-  type DB_FileType,
 } from "~/server/db/schema";
-import { eq, isNull, and } from "drizzle-orm";
 
 export const QUERIES = {
   getFolders: function (folderId: number) {
