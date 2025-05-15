@@ -6,7 +6,7 @@ import { type Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cloud Drive",
   description: "Its like Google Drive but without the Google",
-  icons: [{ rel: "icon", url: "icon.ico" }],
+  icons: [{ rel: "icon", url: "favicon.ico" }],
 };
 
 export default function RootLayout({
