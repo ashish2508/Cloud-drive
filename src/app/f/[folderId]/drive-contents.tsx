@@ -7,15 +7,12 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
-import { UploadButton } from "~/components/uploadthing";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { FileRow, FolderRow } from "~/app/f/[folderId]/file-row";
-import type {
-  files_table,
-  folders_table,
-} from "~/server/db/schema";
 import { useRouter } from "next/navigation";
+import { FileRow, FolderRow } from "~/app/f/[folderId]/file-row";
+import { UploadButton } from "~/components/uploadthing";
+import type { files_table, folders_table } from "~/server/db/schema";
 
 export default function DriveContents(props: {
   files: (typeof files_table.$inferSelect)[];
@@ -88,4 +85,3 @@ export default function DriveContents(props: {
     </div>
   );
 }
- 
