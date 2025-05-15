@@ -10,7 +10,7 @@ import {
 import { UploadButton } from "~/components/uploadthing";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { FileRow, FolderRow } from "~/app/file-row";
+import { FileRow, FolderRow } from "~/app/f/[folderId]/file-row";
 import type {
   files_table,
   folders_table,
@@ -21,8 +21,9 @@ export default function DriveContents(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
   parents: (typeof folders_table.$inferSelect)[];
+  currentFolderId: number;
 }) {
-const navigate = useRouter();
+  const navigate = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-900 p-8 text-gray-100">
@@ -87,3 +88,4 @@ const navigate = useRouter();
     </div>
   );
 }
+ 
